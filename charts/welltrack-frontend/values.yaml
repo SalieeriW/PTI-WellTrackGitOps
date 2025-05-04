@@ -21,8 +21,8 @@ ingress:
 
 resources:
   requests:
-    cpu: 1
-    memory: 2Gi
+    cpu: 50m       # 降低 CPU 请求
+    memory: 128Mi
   limits:
-    cpu: 1
-    memory: 2Gi
+    cpu: 200m
+    memory: 256Mi
