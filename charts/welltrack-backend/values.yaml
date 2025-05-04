@@ -1,14 +1,11 @@
 replicaCount: 1
-
 image:
-  repository: harbor.welltrack.local/welltrack/welltrack-backend
-  tag: latest
+  repository: ghcr.io/hongda-zhu/welltrack-backend
+  tag: 8ac979c
   pullPolicy: Always
-
 service:
   type: ClusterIP
   port: 8080
-  
 resources:
   requests:
     cpu: 500m
