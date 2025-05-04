@@ -1,15 +1,12 @@
 replicaCount: 1
-
 image:
   # 使用 Docker 主机 IP 代替主机名
-  repository: 172.17.0.1:80/welltrack/welltrack-frontend
-  tag: latest
+  repository: ghcr.io/hongda-zhu/welltrack-frontend
+  tag: 3641d37
   pullPolicy: Always
-
 service:
   type: ClusterIP
   port: 80
-
 ingress:
   enabled: true
   className: nginx
@@ -18,11 +15,9 @@ ingress:
   pathType: Prefix
   annotations:
     nginx.ingress.kubernetes.io/ssl-redirect: "false"
-
 # 添加镜像拉取凭证
 imagePullSecrets:
   - name: harbor-credentials
-
 resources:
   requests:
     cpu: 100m
