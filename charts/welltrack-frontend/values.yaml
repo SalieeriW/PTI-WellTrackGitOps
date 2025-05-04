@@ -1,8 +1,7 @@
 replicaCount: 1
 image:
-  # 使用 Docker 主机 IP 代替主机名
-  repository: ghcr.io/hongda-zhu/welltrack-frontend  # <-- 修改这里，替换 [你的实际用户名]
-  tag: latest                                         # <-- 保持不变，匹配加载的 tag
+  repository: ghcr.io/hongda-zhu/welltrack-frontend
+  tag: latest
   pullPolicy: Always
 service:
   type: ClusterIP
@@ -18,8 +17,8 @@ ingress:
     nginx.ingress.kubernetes.io/ssl-redirect: "false"
 resources:
   requests:
-    cpu: 1
+    cpu: 2Gi
     memory: 2Gi
   limits:
-    cpu: 2
+    cpu: 2Gi
     memory: 2Gi
