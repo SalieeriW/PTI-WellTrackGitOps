@@ -1,7 +1,8 @@
 replicaCount: 1
 
 image:
-  repository: harbor.welltrack.local/welltrack/welltrack-frontend
+  # 使用 Docker 主机 IP 代替主机名
+  repository: 172.17.0.1:80/welltrack/welltrack-frontend
   tag: latest
   pullPolicy: Always
 
@@ -17,6 +18,10 @@ ingress:
   pathType: Prefix
   annotations:
     nginx.ingress.kubernetes.io/ssl-redirect: "false"
+
+# 添加镜像拉取凭证
+imagePullSecrets:
+  - name: harbor-credentials
 
 resources:
   requests:
