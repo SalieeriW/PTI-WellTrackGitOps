@@ -2,7 +2,7 @@ replicaCount: 1
 image:
   # 使用 Docker 主机 IP 代替主机名
   repository: ghcr.io/hongda-zhu/welltrack-frontend
-  tag: 3641d37
+  tag: a11ff99
   pullPolicy: Always
 service:
   type: ClusterIP
