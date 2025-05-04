@@ -1,0 +1,6 @@
+apiVersion: v2
+name: welltrack-frontend
+description: Frontend web application for WellTrack
+type: application
+version: 0.1.0
+appVersion: "1.0.0"

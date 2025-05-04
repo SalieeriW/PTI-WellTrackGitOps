@@ -6,7 +6,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: 'https://github.com/hongda-zhu/PTI-WellTrackFront.git'
+    repoURL: 'https://github.com/hongda-zhu/PTI-WellTrackGitOps.git'
     path: 'charts/welltrack-backend'
     targetRevision: HEAD
   destination:
