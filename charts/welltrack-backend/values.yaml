@@ -13,3 +13,13 @@ resources:
   limits:
     cpu: 500m
     memory: 2Gi
+
+# --- NEW Section for Database Credentials ---
+# WARNING: Storing plain text secrets in Git is insecure for production!
+# Consider using Helm Secrets or other secure methods for production environments.
+databaseCredentials:
+  username: "user" # Replace with actual username
+  password: "password" # Replace with actual password
+  host: "postgresql.database.svc.cluster.local" # Replace with actual host (e.g., from database chart service)
+  port: "5432" # Replace with actual port
+  database: "welltrackdb" # Replace with actual database name
