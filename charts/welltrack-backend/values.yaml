@@ -1,7 +1,7 @@
 replicaCount: 1
 image:
   repository: ghcr.io/hongda-zhu/welltrack-backend
-  tag: bbb1695
+  tag: bb372d4
   pullPolicy: Always
 service:
   type: ClusterIP
