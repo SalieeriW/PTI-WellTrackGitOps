@@ -1,7 +1,7 @@
 replicaCount: 1
 image:
   repository: ghcr.io/hongda-zhu/welltrack-backend
-  tag: 8ac979c
+  tag: c4bf3c6
   pullPolicy: Always
 service:
   type: ClusterIP
@@ -13,7 +13,6 @@ resources:
   limits:
     cpu: 500m
     memory: 2Gi
-
 # --- NEW Section for Database Credentials ---
 # WARNING: Storing plain text secrets in Git is insecure for production!
 # Consider using Helm Secrets or other secure methods for production environments.
