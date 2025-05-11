@@ -26,15 +26,15 @@ databaseCredentials:
 # --- NEW Section for Backend Ingress ---
 ingress:
   enabled: true
-  className: "nginx" # Assuming you use the same nginx ingress controller
-  # annotations:
-  #   nginx.ingress.kubernetes.io/rewrite-target: / # Uncomment if path rewriting is needed
+  className: "nginx"
+  annotations: 
+    cert-manager.io/cluster-issuer: selfsigned-cluster-issuer # Annotation for cert-manager
   hosts:
     - host: api.welltrack.local # Hostname for the backend API
       paths:
         - path: / # Base path for the API
           pathType: Prefix 
-  tls: [] # Add TLS configuration if needed, e.g.:
-  # - secretName: backend-tls-secret
-  #   hosts:
-  #     - api.welltrack.local
+  tls: 
+    - hosts:
+        - api.welltrack.local
+      secretName: api-welltrack-local-tls # Kubernetes secret to store the TLS certificate

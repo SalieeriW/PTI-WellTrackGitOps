@@ -45,18 +45,17 @@ service:
 ingress:
   enabled: true # Set to true to expose the ML application via Ingress
   className: "nginx" # Defines the Ingress controller to use
-  annotations: {} # Add any Ingress controller specific annotations here
-    # kubernetes.io/ingress.class: nginx
-    # kubernetes.io/tls-acme: "true"
+  annotations: 
+    cert-manager.io/cluster-issuer: selfsigned-cluster-issuer # Annotation for cert-manager
   hosts:
     - host: ml.welltrack.local # Hostname for accessing the ML application
       paths:
         - path: / # Base path for the ML application under the host
           pathType: Prefix # Path matching type: Prefix, Exact, or ImplementationSpecific
-  tls: [] # TLS configuration for Ingress
-  #  - secretName: ml-tls-secret
-  #    hosts:
-  #      - ml.welltrack.local
+  tls: 
+    - hosts:
+        - ml.welltrack.local
+      secretName: ml-welltrack-local-tls # Kubernetes secret to store the TLS certificate
 
 resources: {} # Resource requests and limits for the ML application pods
   # We usually recommend not to specify default resources and to leave this as a conscious
