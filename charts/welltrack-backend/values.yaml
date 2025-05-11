@@ -22,3 +22,19 @@ databaseCredentials:
   host: "postgresql.database.svc.cluster.local" # Replace with actual host (e.g., from database chart service)
   port: "5432" # Replace with actual port
   database: "welltrackdb" # Replace with actual database name
+
+# --- NEW Section for Backend Ingress ---
+ingress:
+  enabled: true
+  className: "nginx" # Assuming you use the same nginx ingress controller
+  # annotations:
+  #   nginx.ingress.kubernetes.io/rewrite-target: / # Uncomment if path rewriting is needed
+  hosts:
+    - host: api.welltrack.local # Hostname for the backend API
+      paths:
+        - path: / # Base path for the API
+          pathType: Prefix 
+  tls: [] # Add TLS configuration if needed, e.g.:
+  # - secretName: backend-tls-secret
+  #   hosts:
+  #     - api.welltrack.local
