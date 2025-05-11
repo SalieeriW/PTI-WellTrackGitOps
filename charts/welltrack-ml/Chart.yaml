@@ -1,14 +1,14 @@
 apiVersion: v2
 name: welltrack-ml
-description: A Helm chart for the WellTrack ML application
-# Application charts are a collection of templates that can be packaged into versioned archives
-# to be deployed.
+description: Un chart de Helm para la aplicación WellTrack ML
+# Los charts de aplicación son una colección de plantillas que se pueden empaquetar en archivos versionados
+# para ser desplegados.
 type: application
 
-# This is the chart version. This version number should be incremented each time you make changes
-# to the chart and its templates, including the application version.
+# Esta es la versión del chart. Este número de versión debe incrementarse cada vez que realices cambios
+# en el chart y sus plantillas, incluida la versión de la aplicación.
 version: 0.1.0
 
-# This is the version number of the application being deployed. This version number should be
-# incremented each time you make changes to the application.
+# Este es el número de versión de la aplicación que se está desplegando. Este número de versión debe
+# incrementarse cada vez que realices cambios en la aplicación.
 appVersion: "1.0.0"

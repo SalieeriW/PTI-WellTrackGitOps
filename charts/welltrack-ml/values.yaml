@@ -1,13 +1,13 @@
-# Default values for welltrack-ml.
-# This is a YAML-formatted file.
-# Declare variables to be passed into your templates.
+# Valores por defecto para welltrack-ml.
+# Este es un archivo con formato YAML.
+# Declara variables que se pasarán a tus plantillas.
 
 replicaCount: 1
 
 image:
-  repository: ghcr.io/hongda-zhu/welltrack-ml # Specifies the Docker image repository for the ML application
+  repository: ghcr.io/hongda-zhu/welltrack-ml # Especifica el repositorio de imágenes Docker para la aplicación ML
   pullPolicy: IfNotPresent
-  # Overrides the image tag whose default is the chart appVersion.
+  # Sobrescribe la etiqueta de la imagen cuyo valor por defecto es el appVersion del chart.
   tag: ""
 
 imagePullSecrets: []
@@ -15,12 +15,12 @@ nameOverride: ""
 fullnameOverride: ""
 
 serviceAccount:
-  # Specifies whether a service account should be created
+  # Especifica si se debe crear una cuenta de servicio
   create: true
-  # Annotations to add to the service account
+  # Anotaciones para añadir a la cuenta de servicio
   annotations: {}
-  # The name of the service account to use.
-  # If not set and create is true, a name is generated using the fullname template
+  # El nombre de la cuenta de servicio a utilizar.
+  # Si no se establece y create es true, se genera un nombre usando la plantilla fullname
   name: ""
 
 podAnnotations: {}
@@ -39,29 +39,29 @@ securityContext: {}
 
 service:
   type: ClusterIP
-  port: 5001 # Port exposed by the ML application's service and container
-  # targetPort: http # If the container port is named (e.g., 'http'), ensure it matches the name in the Deployment's containerPort specification.
+  port: 5001 # Puerto expuesto por el servicio y contenedor de la aplicación ML
+  # targetPort: http # Si el puerto del contenedor tiene un nombre (p.ej., 'http'), asegúrate de que coincida con el nombre en la especificación containerPort del Deployment.
 
 ingress:
-  enabled: true # Set to true to expose the ML application via Ingress
-  className: "nginx" # Defines the Ingress controller to use
-  annotations: 
-    cert-manager.io/cluster-issuer: selfsigned-cluster-issuer # Annotation for cert-manager
+  enabled: true # Establecer en true para exponer la aplicación ML a través de Ingress
+  className: "nginx" # Define el controlador de Ingress a utilizar
+  annotations:
+    cert-manager.io/cluster-issuer: selfsigned-cluster-issuer # Anotación para cert-manager
   hosts:
-    - host: ml.welltrack.local # Hostname for accessing the ML application
+    - host: ml.welltrack.local # Nombre de host para acceder a la aplicación ML
       paths:
-        - path: / # Base path for the ML application under the host
-          pathType: Prefix # Path matching type: Prefix, Exact, or ImplementationSpecific
-  tls: 
+        - path: / # Ruta base para la aplicación ML bajo el host
+          pathType: Prefix # Tipo de coincidencia de ruta: Prefix, Exact o ImplementationSpecific
+  tls:
     - hosts:
         - ml.welltrack.local
-      secretName: ml-welltrack-local-tls # Kubernetes secret to store the TLS certificate
+      secretName: ml-welltrack-local-tls # Secreto de Kubernetes para almacenar el certificado TLS
 
-resources: {} # Resource requests and limits for the ML application pods
-  # We usually recommend not to specify default resources and to leave this as a conscious
-  # choice for the user. This also increases chances charts run on environments with scarce
-  # resources, such as Minikube. If you do want to specify resources, uncomment the following
-  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+resources: {} # Solicitudes y límites de recursos para los pods de la aplicación ML
+  # Generalmente recomendamos no especificar recursos por defecto y dejar esto como una decisión consciente
+  # para el usuario. Esto también aumenta las posibilidades de que los charts se ejecuten en entornos con escasos
+  # recursos, como Minikube. Si deseas especificar recursos, descomenta las siguientes
+  # líneas, ajústalas según sea necesario y elimina las llaves después de 'resources:'.
   # limits:
   #   cpu: 200m
   #   memory: 256Mi
@@ -76,8 +76,8 @@ autoscaling:
   targetCPUUtilizationPercentage: 80
   # targetMemoryUtilizationPercentage: 80
 
-nodeSelector: {} # Node labels for pod assignment
+nodeSelector: {} # Etiquetas de nodo para la asignación de pods
 
-tolerations: [] # Node taints to tolerate
+tolerations: [] # Taints de nodo a tolerar
 
-affinity: {} # Pod affinity and anti-affinity rules
+affinity: {} # Reglas de afinidad y anti-afinidad de pods

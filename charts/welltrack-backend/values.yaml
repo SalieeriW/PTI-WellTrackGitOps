@@ -13,28 +13,29 @@ resources:
   limits:
     cpu: 500m
     memory: 2Gi
-# --- NEW Section for Database Credentials ---
-# WARNING: Storing plain text secrets in Git is insecure for production!
-# Consider using Helm Secrets or other secure methods for production environments.
-databaseCredentials:
-  username: "user" # Replace with actual username
-  password: "password" # Replace with actual password
-  host: "postgresql.database.svc.cluster.local" # Replace with actual host (e.g., from database chart service)
-  port: "5432" # Replace with actual port
-  database: "welltrackdb" # Replace with actual database name
 
-# --- NEW Section for Backend Ingress ---
+# Credenciales de la base de datos
+# ADVERTENCIA: ¡Almacenar secretos en texto plano en Git es inseguro para producción!
+# Considere usar Helm Secrets u otros métodos seguros para entornos de producción.
+databaseCredentials:
+  username: "user" # Reemplazar con el nombre de usuario real
+  password: "password" # Reemplazar con la contraseña real
+  host: "postgresql.database.svc.cluster.local" # Reemplazar con el host real (p.ej., del servicio del chart de base de datos)
+  port: "5432" # Reemplazar con el puerto real
+  database: "welltrackdb" # Reemplazar con el nombre de la base de datos real
+
+# Configuración de Ingress para el backend
 ingress:
   enabled: true
   className: "nginx"
-  annotations: 
-    cert-manager.io/cluster-issuer: selfsigned-cluster-issuer # Annotation for cert-manager
+  annotations:
+    cert-manager.io/cluster-issuer: selfsigned-cluster-issuer # Anotación para cert-manager
   hosts:
-    - host: api.welltrack.local # Hostname for the backend API
+    - host: api.welltrack.local # Nombre de host para la API del backend
       paths:
-        - path: / # Base path for the API
-          pathType: Prefix 
-  tls: 
+        - path: / # Ruta base para la API
+          pathType: Prefix
+  tls:
     - hosts:
         - api.welltrack.local
-      secretName: api-welltrack-local-tls # Kubernetes secret to store the TLS certificate
+      secretName: api-welltrack-local-tls # Secreto de Kubernetes para almacenar el certificado TLS

@@ -1,53 +1,51 @@
-# Default values for welltrack-frontend.
-# This is a YAML-formatted file.
-# Declare variables to be passed into your templates.
+# Valores por defecto para welltrack-frontend.
+# Este es un archivo con formato YAML.
+# Declara variables que se pasarán a tus plantillas.
+# Comentarios anteriores eliminados o traducidos/integrados donde sea relevante.
 
 replicaCount: 1
 
 image:
-  # Correct repository pointing to GitHub Container Registry
-  repository: ghcr.io/hongda-zhu/welltrack-frontend 
-  # The tag will be updated by the CI pipeline
-  tag: latest # Default tag, CI should override this
-  pullPolicy: Always 
+  # Repositorio correcto apuntando a GitHub Container Registry
+  repository: ghcr.io/hongda-zhu/welltrack-frontend
+  # La etiqueta será actualizada por el pipeline de CI
+  tag: latest # Etiqueta por defecto, CI debería sobrescribir esto
+  pullPolicy: Always
 
-# Optional: Define imagePullSecrets if GHCR package is private
-# imagePullSecrets:
-#   - name: ghcr-credentials # Secret name must exist in the 'welltrack' namespace
 
 serviceAccount:
-  # Specifies whether a service account should be created
+  # Especifica si se debe crear una cuenta de servicio
   create: true
-  # Annotations to add to the service account
+  # Anotaciones para añadir a la cuenta de servicio
   annotations: {}
-  # The name of the service account to use.
-  # If not set and create is true, a name is generated using the fullname template
+  # El nombre de la cuenta de servicio a utilizar.
+  # Si no se establece y create es true, se genera un nombre usando la plantilla fullname
   name: ""
 
 service:
   type: ClusterIP
-  port: 3000 # Assuming the frontend container listens on port 3000
+  port: 3000 # Puerto en el que escucha el contenedor del frontend
 
 ingress:
   enabled: true
   className: "nginx"
-  annotations: 
-    cert-manager.io/cluster-issuer: selfsigned-cluster-issuer # Annotation for cert-manager
+  annotations:
+    cert-manager.io/cluster-issuer: selfsigned-cluster-issuer # Anotación para cert-manager
   hosts:
-    - host: app.welltrack.local # Or your desired frontend hostname
+    - host: app.welltrack.local
       paths:
         - path: /
-          pathType: Prefix # Changed from ImplementationSpecific
-  tls: 
+          pathType: Prefix
+  tls:
     - hosts:
         - app.welltrack.local
-      secretName: app-welltrack-local-tls # Kubernetes secret to store the TLS certificate
+      secretName: app-welltrack-local-tls # Secreto de Kubernetes para almacenar el certificado TLS
 
 resources: {}
-  # We usually recommend not to specify default resources and to leave this as a conscious
-  # choice for the user. This also increases chances charts run on environments with scarce
-  # resources, such as Minikube. If you do want to specify resources, uncomment the following
-  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  # Generalmente recomendamos no especificar recursos por defecto y dejar esto como una decisión consciente
+  # para el usuario. Esto también aumenta las posibilidades de que los charts se ejecuten en entornos con escasos
+  # recursos, como Minikube. Si deseas especificar recursos, descomenta las siguientes
+  # líneas, ajústalas según sea necesario y elimina las llaves después de 'resources:'.
   # limits:
   #   cpu: 100m
   #   memory: 128Mi
