@@ -36,7 +36,7 @@ ingress:
     - host: app.welltrack.local # Or your desired frontend hostname
       paths:
         - path: /
-          pathType: ImplementationSpecific
+          pathType: Prefix
   tls: []
 
 resources: {}
