@@ -28,17 +28,16 @@ service:
   type: ClusterIP
   port: 3000 # Assuming the frontend container listens on port 3000
 
-# Optional: Ingress configuration
-# ingress:
-#  enabled: true
-#  className: "nginx"
-#  annotations: {}
-#  hosts:
-#    - host: app.welltrack.local # Or your desired frontend hostname
-#      paths:
-#        - path: /
-#          pathType: ImplementationSpecific
-#  tls: []
+ingress:
+  enabled: true
+  className: "nginx"
+  annotations: {}
+  hosts:
+    - host: app.welltrack.local # Or your desired frontend hostname
+      paths:
+        - path: /
+          pathType: ImplementationSpecific
+  tls: []
 
 resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious
