@@ -1,0 +1,70 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "welltrack-ml.fullname" . }}
+  labels:
+    {{- include "welltrack-ml.labels" . | nindent 4 }}
+spec:
+  {{- if not .Values.autoscaling.enabled }}
+  replicas: {{ .Values.replicaCount }}
+  {{- end }}
+  selector:
+    matchLabels:
+      {{- include "welltrack-ml.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        {{- include "welltrack-ml.selectorLabels" . | nindent 8 }}
+        {{- with .Values.podLabels }}
+        {{- toYaml . | nindent 8 }}
+        {{- end }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ include "welltrack-ml.serviceAccountName" . }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      containers:
+        - name: {{ .Chart.Name }}
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - name: http # Nombre del puerto, puede ser referenciado por service.targetPort
+              containerPort: {{ .Values.service.port }} # El puerto que la app ML escucha
+              protocol: TCP
+          # livenessProbe:
+          #   httpGet:
+          #     path: /healthz # TODO: Cambiar por el health endpoint de la app ML
+          #     port: http
+          # readinessProbe:
+          #   httpGet:
+          #     path: /readyz # TODO: Cambiar por el readiness endpoint de la app ML
+          #     port: http
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+          # env:
+          #   - name: EXAMPLE_ENV_VAR
+          #     value: "example_value"
+          # envFrom:
+          #   - secretRef:
+          #       name: {{ include "welltrack-ml.fullname" . }}-secret
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }} 

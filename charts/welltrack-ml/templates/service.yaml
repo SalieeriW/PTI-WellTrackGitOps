@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "welltrack-ml.fullname" . }}
+  labels:
+    {{- include "welltrack-ml.labels" . | nindent 4 }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - port: {{ .Values.service.port }}
+      targetPort: {{ .Values.service.port }} # Asume que el targetPort es el mismo que el service.port; o usa un nombre como 'http' si el containerPort está nombrado
+      # Si usas un nombre para targetPort, asegúrate que el containerPort en deployment.yaml también tenga ese nombre.
+      # targetPort: http 
+      protocol: TCP
+      name: http # Nombre del puerto del servicio, usado por Ingress
+  selector:
+    {{- include "welltrack-ml.selectorLabels" . | nindent 4 }} 
