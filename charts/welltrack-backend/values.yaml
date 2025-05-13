@@ -1,7 +1,7 @@
 replicaCount: 1
 image:
   repository: ghcr.io/hongda-zhu/welltrack-backend
-  tag: bb372d4
+  tag: 8158f8b
   pullPolicy: Always
 service:
   type: ClusterIP
@@ -13,7 +13,6 @@ resources:
   limits:
     cpu: 500m
     memory: 2Gi
-
 # Credenciales de la base de datos
 # ADVERTENCIA: ¡Almacenar secretos en texto plano en Git es inseguro para producción!
 # Considere usar Helm Secrets u otros métodos seguros para entornos de producción.
@@ -23,7 +22,6 @@ databaseCredentials:
   host: "postgresql.database.svc.cluster.local" # Reemplazar con el host real (p.ej., del servicio del chart de base de datos)
   port: "5432" # Reemplazar con el puerto real
   database: "welltrackdb" # Reemplazar con el nombre de la base de datos real
-
 # Configuración de Ingress para el backend
 ingress:
   enabled: true
