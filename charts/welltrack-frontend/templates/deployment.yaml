@@ -21,5 +21,8 @@ spec:
           ports:
             - containerPort: {{ .Values.service.port }}
               name: http
+          envFrom:
+            - secretRef:
+                name: {{ include "welltrack-frontend.fullname" . }}-env-secret
           resources:
             {{- toYaml .Values.resources | nindent 12 }}

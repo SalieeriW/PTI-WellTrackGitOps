@@ -58,3 +58,9 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
+
+envSecrets:
+  GOOGLE_CLIENT_ID: 486049524655-kv9hjekqeqk47l4mblrp9o40sobrtl54.apps.googleusercontent.com
+  GOOGLE_CLIENT_SECRET: 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
+  NEXTAUTH_SECRET: muysecreto
+  NEXTAUTH_URL: http://app.welltrack.local:3000
