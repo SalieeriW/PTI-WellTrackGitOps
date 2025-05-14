@@ -21,7 +21,7 @@ serviceAccount:
   annotations: {}
   # El nombre de la cuenta de servicio a utilizar.
   # Si no se establece y create es true, se genera un nombre usando la plantilla fullname
-  name: ""
+  name: "welltrack-ml"
 
 podAnnotations: {}
 podLabels: {}
