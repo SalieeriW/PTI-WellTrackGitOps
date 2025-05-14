@@ -5,10 +5,10 @@
 replicaCount: 1
 
 image:
-  repository: ghcr.io/hongda-zhu/welltrack-ml # Especifica el repositorio de imágenes Docker para la aplicación ML
-  pullPolicy: IfNotPresent
+  repository: ghcr.io/salieeriw/pti-welltrackml # Especifica el repositorio de imágenes Docker para la aplicación ML
+  pullPolicy: Always
   # Sobrescribe la etiqueta de la imagen cuyo valor por defecto es el appVersion del chart.
-  tag: ""
+  tag: "latest"
 
 imagePullSecrets: []
 nameOverride: ""
@@ -26,10 +26,12 @@ serviceAccount:
 podAnnotations: {}
 podLabels: {}
 
-podSecurityContext: {}
+podSecurityContext:
+  {}
   # fsGroup: 2000
 
-securityContext: {}
+securityContext:
+  {}
   # capabilities:
   #   drop:
   #   - ALL
@@ -39,7 +41,7 @@ securityContext: {}
 
 service:
   type: ClusterIP
-  port: 5001 # Puerto expuesto por el servicio y contenedor de la aplicación ML
+  port: 5000 # Puerto expuesto por el servicio y contenedor de la aplicación ML
   # targetPort: http # Si el puerto del contenedor tiene un nombre (p.ej., 'http'), asegúrate de que coincida con el nombre en la especificación containerPort del Deployment.
 
 ingress:
@@ -57,7 +59,8 @@ ingress:
         - ml.welltrack.local
       secretName: ml-welltrack-local-tls # Secreto de Kubernetes para almacenar el certificado TLS
 
-resources: {} # Solicitudes y límites de recursos para los pods de la aplicación ML
+resources:
+  {} # Solicitudes y límites de recursos para los pods de la aplicación ML
   # Generalmente recomendamos no especificar recursos por defecto y dejar esto como una decisión consciente
   # para el usuario. Esto también aumenta las posibilidades de que los charts se ejecuten en entornos con escasos
   # recursos, como Minikube. Si deseas especificar recursos, descomenta las siguientes

@@ -7,11 +7,10 @@ replicaCount: 1
 
 image:
   # Repositorio correcto apuntando a GitHub Container Registry
-  repository: ghcr.io/hongda-zhu/welltrack-frontend
+  repository: ghcr.io/salieeriw/welltrack-frontend
   # La etiqueta será actualizada por el pipeline de CI
   tag: latest # Etiqueta por defecto, CI debería sobrescribir esto
   pullPolicy: Always
-
 
 serviceAccount:
   # Especifica si se debe crear una cuenta de servicio
@@ -41,7 +40,8 @@ ingress:
         - app.welltrack.local
       secretName: app-welltrack-local-tls # Secreto de Kubernetes para almacenar el certificado TLS
 
-resources: {}
+resources:
+  {}
   # Generalmente recomendamos no especificar recursos por defecto y dejar esto como una decisión consciente
   # para el usuario. Esto también aumenta las posibilidades de que los charts se ejecuten en entornos con escasos
   # recursos, como Minikube. Si deseas especificar recursos, descomenta las siguientes
