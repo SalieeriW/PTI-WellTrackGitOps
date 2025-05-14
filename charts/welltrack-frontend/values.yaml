@@ -4,14 +4,12 @@
 # Comentarios anteriores eliminados o traducidos/integrados donde sea relevante.
 
 replicaCount: 1
-
 image:
   # Repositorio correcto apuntando a GitHub Container Registry
   repository: ghcr.io/salieeriw/welltrack-frontend
   # La etiqueta será actualizada por el pipeline de CI
-  tag: latest # Etiqueta por defecto, CI debería sobrescribir esto
+  tag: 94ad40a # Etiqueta por defecto, CI debería sobrescribir esto
   pullPolicy: Always
-
 serviceAccount:
   # Especifica si se debe crear una cuenta de servicio
   create: true
@@ -20,11 +18,9 @@ serviceAccount:
   # El nombre de la cuenta de servicio a utilizar.
   # Si no se establece y create es true, se genera un nombre usando la plantilla fullname
   name: ""
-
 service:
   type: ClusterIP
   port: 3000 # Puerto en el que escucha el contenedor del frontend
-
 ingress:
   enabled: true
   className: "nginx"
@@ -39,24 +35,20 @@ ingress:
     - hosts:
         - app.welltrack.local
       secretName: app-welltrack-local-tls # Secreto de Kubernetes para almacenar el certificado TLS
-
-resources:
-  {}
-  # Generalmente recomendamos no especificar recursos por defecto y dejar esto como una decisión consciente
-  # para el usuario. Esto también aumenta las posibilidades de que los charts se ejecuten en entornos con escasos
-  # recursos, como Minikube. Si deseas especificar recursos, descomenta las siguientes
-  # líneas, ajústalas según sea necesario y elimina las llaves después de 'resources:'.
-  # limits:
-  #   cpu: 100m
-  #   memory: 128Mi
-  # requests:
-  #   cpu: 100m
-  #   memory: 128Mi
+resources: {}
+# Generalmente recomendamos no especificar recursos por defecto y dejar esto como una decisión consciente
+# para el usuario. Esto también aumenta las posibilidades de que los charts se ejecuten en entornos con escasos
+# recursos, como Minikube. Si deseas especificar recursos, descomenta las siguientes
+# líneas, ajústalas según sea necesario y elimina las llaves después de 'resources:'.
+# limits:
+#   cpu: 100m
+#   memory: 128Mi
+# requests:
+#   cpu: 100m
+#   memory: 128Mi
 
 nodeSelector: {}
-
 tolerations: []
-
 affinity: {}
 
 envSecrets:
