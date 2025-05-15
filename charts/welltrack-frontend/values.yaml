@@ -8,7 +8,7 @@ image:
   # Repositorio correcto apuntando a GitHub Container Registry
   repository: ghcr.io/salieeriw/welltrack-frontend
   # La etiqueta será actualizada por el pipeline de CI
-  tag: c11a81c # Etiqueta por defecto, CI debería sobrescribir esto
+  tag: 9ec1b01 # Etiqueta por defecto, CI debería sobrescribir esto
   pullPolicy: Always
 serviceAccount:
   # Especifica si se debe crear una cuenta de servicio
