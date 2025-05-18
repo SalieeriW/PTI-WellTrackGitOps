@@ -1,7 +1,7 @@
 replicaCount: 1
 image:
   repository: ghcr.io/salieeriw/welltrack-backend
-  tag: a47408b
+  tag: 916e691
   pullPolicy: Always
 service:
   type: ClusterIP
