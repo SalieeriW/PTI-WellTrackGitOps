@@ -7,7 +7,7 @@ image:
   repository: ghcr.io/salieeriw/pti-welltrackml # Especifica el repositorio de imágenes Docker para la aplicación ML
   pullPolicy: Always
   # Sobrescribe la etiqueta de la imagen cuyo valor por defecto es el appVersion del chart.
-  tag: "fd67089"
+  tag: "2ab7e36"
 imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
