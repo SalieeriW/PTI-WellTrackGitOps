@@ -15,21 +15,24 @@ resources:
     memory: 2Gi
 envSecrets:
   SUPABASE_URL: https://mnjyjbrizrvlzgecgybl.supabase.co
-  SUPABASE_KEY: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1uanlqYnJpenJ2bHpnZWNneWJsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDY5NzgyNzUsImV4cCI6MjA2MjU1NDI3NX0.jlSoRQUck_Rrosa_Exhl-kg4QLbRnWDKMVLqxkFQ-IM
+  SUPABASE_KEY: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
   ML_BASEURL: http://ml.welltrack.local:5000
   RESEND_API_KEY: re_BPhFZCWK_KYz1dxvpkFMmNxAf1i8VJFwD
-# Configuración de Ingress para el backend
+
 ingress:
   enabled: true
   className: "nginx"
   annotations:
-    cert-manager.io/cluster-issuer: selfsigned-cluster-issuer # Anotación para cert-manager
+    cert-manager.io/cluster-issuer: selfsigned-cluster-issuer
   hosts:
-    - host: api.welltrack.local # Nombre de host para la API del backend
+    - host: api.welltrack.local
       paths:
-        - path: / # Ruta base para la API
+        - path: /
           pathType: Prefix
   tls:
     - hosts:
         - api.welltrack.local
-      secretName: api-welltrack-local-tls # Secreto de Kubernetes para almacenar el certificado TLS
+      secretName: api-welltrack-local-tls
+
+nodeSelector:
+  tipo: backend
