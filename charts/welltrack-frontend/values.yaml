@@ -47,8 +47,6 @@ resources: {}
 #   cpu: 100m
 #   memory: 128Mi
 
-nodeSelector:
-  tipo: control
 tolerations: []
 affinity: {}
 envSecrets:

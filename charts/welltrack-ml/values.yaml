@@ -69,7 +69,5 @@ autoscaling:
   targetCPUUtilizationPercentage: 80
   # targetMemoryUtilizationPercentage: 80
 # Etiquetas de nodo para la asignación de pods
-nodeSelector:
-  tipo: ml
 tolerations: [] # Taints de nodo a tolerar
 affinity: {} # Reglas de afinidad y anti-afinidad de pods
