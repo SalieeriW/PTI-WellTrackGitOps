@@ -15,7 +15,7 @@ resources:
     memory: 2Gi
 envSecrets:
   SUPABASE_URL: https://mnjyjbrizrvlzgecgybl.supabase.co
-  SUPABASE_KEY: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+  SUPABASE_KEY: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1uanlqYnJpenJ2bHpnZWNneWJsIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc0Njk3ODI3NSwiZXhwIjoyMDYyNTU0Mjc1fQ.Zk6zlyy43EbVbUnUNVwoORDRqsYDbE3653lUDXUAxAk
   ML_BASEURL: http://ml.welltrack.local:5000
   RESEND_API_KEY: re_BPhFZCWK_KYz1dxvpkFMmNxAf1i8VJFwD
 
