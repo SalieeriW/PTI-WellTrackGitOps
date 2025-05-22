@@ -1,7 +1,7 @@
 replicaCount: 1
 image:
   repository: ghcr.io/salieeriw/welltrack-backend
-  tag: 475f089
+  tag: 0608af4
   pullPolicy: Always
 service:
   type: ClusterIP
@@ -18,7 +18,6 @@ envSecrets:
   SUPABASE_KEY: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1uanlqYnJpenJ2bHpnZWNneWJsIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc0Njk3ODI3NSwiZXhwIjoyMDYyNTU0Mjc1fQ.Zk6zlyy43EbVbUnUNVwoORDRqsYDbE3653lUDXUAxAk
   ML_BASEURL: http://ml.welltrack.local:5000
   RESEND_API_KEY: re_BPhFZCWK_KYz1dxvpkFMmNxAf1i8VJFwD
-
 ingress:
   enabled: true
   className: "nginx"
